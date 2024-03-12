@@ -1,16 +1,13 @@
 import os
-from pathlib import Path
-from app_secrets import OPENAI_API_KEY
-from sql_execution import execute_mysql_query
 import streamlit as st
+from pathlib import Path
+from sql_execution import execute_mysql_query
 from PIL import Image
 from langchain import OpenAI, LLMChain
 from langchain.prompts import load_prompt
 
 # Setup env variable
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-# Project root directory
-#root_path = [p for p in Path(__file__).parents if p.parts[-1] == "AI SQL - V3"][0]
+# os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY  # No need for this line anymore
 
 # Frontend
 st.title("AI SQL Assistant")
@@ -18,10 +15,12 @@ user_input = st.text_input("Enter your query")
 tab_titles = ["Result", "Query"]
 tabs = st.tabs(tab_titles)
 
+# Pull OpenAI API key from Streamlit secrets
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 # Create the prompt
 prompt_template = load_prompt('tpch_prompt.yaml')
-llm = OpenAI(temperature=0)
+llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)  # Pass the API key here
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 if user_input:
