@@ -10,7 +10,7 @@ from langchain.prompts import load_prompt
 # Setup env variable
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 # Project root directory
-root_path = [p for p in Path(__file__).parents if p.parts[-1] == "AI SQL - V3"][0]
+#root_path = [p for p in Path(__file__).parents if p.parts[-1] == "AI SQL - V3"][0]
 
 # Frontend
 st.title("AI SQL Assistant")
@@ -20,7 +20,7 @@ tabs = st.tabs(tab_titles)
 
 
 # Create the prompt
-prompt_template = load_prompt(f'{root_path}/prompts/tpch_prompt.yaml')
+prompt_template = load_prompt('tpch_prompt.yaml')
 llm = OpenAI(temperature=0)
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
