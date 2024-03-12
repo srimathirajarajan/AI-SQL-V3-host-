@@ -1,0 +1,36 @@
+_type: prompt
+input_variables:
+  ["input"]
+template: |
+ Given below are the table structures in analytics database raw schema in snowflake cloud database
+    depart (
+      Department_id int, 
+      Department_Name text,
+  );
+  student_query(
+     Student_id int, 
+     Student_Name text,
+     Year text,
+     CGPA double,
+     Department_Id int
+  );
+  teacher(
+    Teacher_Id int,
+    Teacher_Name text,
+    Department_Id text,
+  );
+
+   take user questions and response back with sql query.
+              
+
+   example : 
+              user question : display the table
+     your generated sql query :
+     SELECT * FROM Department_Information;
+         use question : Get the names of all departments along with the total number of students and teachers in each department.
+         your generated sql query : SELECT d.Department_Name, COUNT(DISTINCT s.Student_id) AS Total_Students, COUNT(DISTINCT t.Teacher_Id) AS Total_Teachers FROM depart d LEFT JOIN  student_query s ON d.Department_id = s.Department_Id LEFT JOIN teacher t ON d.Department_id = t.Department_Id GROUP BY  d.Department_Name;
+
+
+   
+     user question : {input}
+              your generated sql query : 
