@@ -20,7 +20,10 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 # Create the prompt
 prompt_template = load_prompt('tpch_prompt.yaml')
-llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)  # Pass the API key here
+
+# Use a supported model
+llm = OpenAI(model="text-davinci", temperature=0, api_key=OPENAI_API_KEY)  
+
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 if user_input:
