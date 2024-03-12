@@ -4,10 +4,10 @@ import pandas as pd
 def execute_mysql_query(sql):
     # MySQL connection parameters
     connection_params = {
-        'user': 'root',
-        'password': 'Srimathi',
-        'host': 'localhost',
-        'database': 'student1',
+        'user': 'sql6690576',
+        'password': 'cmiie8J5uu',
+        'host': 'sql6.freesqldatabase.com',
+        'database': 'sql6690576',
         'port': 3306,
     }
 
