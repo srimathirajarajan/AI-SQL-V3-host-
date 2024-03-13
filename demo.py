@@ -1,6 +1,5 @@
 import mysql.connector
 import pandas as pd
-import os
 import streamlit as st
 from langchain import OpenAI, LLMChain
 from langchain.prompts import load_prompt
