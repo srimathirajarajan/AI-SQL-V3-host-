@@ -104,8 +104,7 @@ try:
 except Exception as e:
     st.error(f"An error occurred: {e}")
 
-sql_generation_chain
-        = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
+sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 # Main functionality except Exception as e:
 if user_input:
