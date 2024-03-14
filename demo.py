@@ -52,7 +52,7 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 prompt_template = load_prompt('tpch_prompt.yaml')
 
 
-llm = OpenAI(engine="text-embedding-3-large", temperature=0, openai_api_key=OPENAI_API_KEY)
+llm = OpenAI(model="text-embedding-3-large", temperature=0, openai_api_key=OPENAI_API_KEY)
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 # Main functionality
