@@ -51,8 +51,8 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 # Load prompt template
 prompt_template = load_prompt('tpch_prompt.yaml')
 
-# Initialize OpenAI and SQL generation chain with the correct endpoint
-llm = OpenAI(model="gpt-4", temperature=0, openai_api_key=OPENAI_API_KEY, endpoint="v1/chat/completions")
+# Initialize OpenAI and SQL generation chain with the correct endpoint using model_kwargs
+llm = OpenAI(model="gpt-4", temperature=0, openai_api_key=OPENAI_API_KEY, model_kwargs={"endpoint": "v1/chat/completions"})
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 # Main functionality
