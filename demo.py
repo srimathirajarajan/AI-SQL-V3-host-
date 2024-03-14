@@ -86,9 +86,10 @@ if user_input:
 model = "gpt-4"    
 if 'text' in sql_query:
     generated_sql = sql_query['text']
-    with temperature=0, tabs[1]:
-        st.write("Generated SQL Query:")
-        st.code(generated_sql)
+    temperature = 0
+    tabs = [1]
+    st.write("Generated SQL Query:")
+    st.code(generated_sql)
 
 
         try:
