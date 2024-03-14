@@ -106,21 +106,28 @@ except Exception as e:
 
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
-# Main functionality except Exception as e:
-if user_input:
-    sql_query = sql_generation_chain(user_input)
-    if 'text' in sql_query:
-        generated_sql = sql_query['text']
-        with tabs[1]:
-            st.write
-            st.write("Generated SQL Query:")
-            st.code(generated_sql)
+# Main functionality
+try:
+    if user_input:
+        sql_query = sql_generation_chain(user_input)
+        if 'text' in sql_query:
+            generated_sql = sql_query['text']
+            with tabs[1]:
+                st.write("Generated SQL Query:")
+                st.code(generated_sql)
 
         try:
             if st.button("Execute Query"):
                 result = execute_mysql_query(generated_sql)
-                if result is not None:(f"Error execut
+                if result is not None:
                     with tabs[0]:
-ing SQL query: {e}")
-    else:
-        st.write("Error generating SQL query. Please check your input and try again.")
+                        st.write("Query Execution Result:")
+                        st.write(result)
+                else:
+                    with tabs[0]:
+                        st.write("No result returned from the database.")
+        except Exception as e:
+            st.error(f"Error executing SQL query: {e}")
+
+except Exception as e:
+    st.error(f"An error occurred: {e}")
