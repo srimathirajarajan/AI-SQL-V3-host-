@@ -58,23 +58,40 @@ sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 # Main functionality
 if user_input:
     sql_query = sql_generation_chain(user_input)
+model="gpt-4    if 'text' in sql_query:
+        generated_sql = sql_query['text']
+        with", temperature=0, tabs[1]:
+            st.write("Generated SQL Query:")
+            st.code(generated_sql)
+
+        try:
+            if st.button("Execute Query"):
+                result openai_api_ = execute_mysql_query(generated_sql)
+                if result is not None:
+                    with tabs[0]:
+                        st.write("Querykey=OPENAI_API_KEY,model_kwargs={"endpoint": "https://api Execution Result:")
+                        st.write(.openai.com/v1/chat/completions"result)
+                else:
+                    with tabs[0]:
+                        st.write("No result returned from the database.")})
+sql_generation_chain
+        = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
+
+# Main functionality except Exception as e:
+if user_input:
+    sql_query = sql_generation_chain(user_input)
     if 'text' in sql_query:
         generated_sql = sql_query['text']
         with tabs[1]:
+            st.write
             st.write("Generated SQL Query:")
             st.code(generated_sql)
 
         try:
             if st.button("Execute Query"):
                 result = execute_mysql_query(generated_sql)
-                if result is not None:
+                if result is not None:(f"Error execut
                     with tabs[0]:
-                        st.write("Query Execution Result:")
-                        st.write(result)
-                else:
-                    with tabs[0]:
-                        st.write("No result returned from the database.")
-        except Exception as e:
-            st.write(f"Error executing SQL query: {e}")
+ing SQL query: {e}")
     else:
         st.write("Error generating SQL query. Please check your input and try again.")
