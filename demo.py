@@ -45,6 +45,8 @@ user_input = st.text_input("Enter your query")
 tab_titles = ["Result", "Query"]
 tabs = st.tabs(tab_titles)
 
+custom_endpoint = "https://api.openai.com/v1/chat/completions"
+
 # Load OpenAI API key from Streamlit secrets
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
@@ -52,7 +54,7 @@ OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 prompt_template = load_prompt('tpch_prompt.yaml')
 
 
-llm = OpenAI(model="gpt-3.5-turbo-instruct", temperature=0, openai_api_key=OPENAI_API_KEY)
+llm = OpenAI(model="gpt-4", temperature=0, openai_api_key=OPENAI_API_KEY,endpoint=custom_endpoint)
 sql_generation_chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 # Main functionality
